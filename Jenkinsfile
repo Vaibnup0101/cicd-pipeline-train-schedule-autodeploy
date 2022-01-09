@@ -50,7 +50,7 @@ pipeline {
                     echo "KUBECONFIG is: $KUBECONFIG"
                 }
                 kubernetesDeploy(
-                    #kubeconfigId: 'kubeconfig',
+                    //kubeconfigId: 'kubeconfig',
                     configs: 'train-schedule-kube-canary.yml',
                     enableConfigSubstitution: true
                 )
