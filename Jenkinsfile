@@ -46,6 +46,7 @@ pipeline {
                 CANARY_REPLICAS = 1
             }
             steps {
+                export KUBECONFIG = "${HOME}/.kube/admin.conf"
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
                     configs: 'train-schedule-kube-canary.yml',
