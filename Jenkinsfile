@@ -61,11 +61,14 @@ pipeline {
                 branch 'master'
             }
             environment { 
-                CANARY_REPLICAS = 0
+                CANARY_REPLICAS = 1
             }
             steps {
-                input 'Deploy to Production?'
-                milestone(1)
+               // input 'Deploy to Production?'
+                //milestone(1)
+                withEnv(['KUBECONFIG=${HOME}/.kube/admin.conf']) {
+                    echo "KUBECONFIG is: $KUBECONFIG"
+                }
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
                     configs: 'train-schedule-kube-canary.yml',
